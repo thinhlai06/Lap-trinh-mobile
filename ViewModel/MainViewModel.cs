@@ -23,4 +23,13 @@ public partial class MainViewModel:ObservableObject
         Items.Add(Text);
         Text = string.Empty;
     }
+
+    [RelayCommand]
+    async Task Tap(string s)
+    {
+        if (string.IsNullOrWhiteSpace(s))
+            return;
+
+        await Shell.Current.GoToAsync($"{nameof(DetailPage)}?Text={Uri.EscapeDataString(s)}");
+    }
 }
